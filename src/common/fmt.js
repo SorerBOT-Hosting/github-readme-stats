@@ -52,6 +52,18 @@ const formatBytes = (bytes) => {
   return `${(bytes / Math.pow(base, i)).toFixed(1)} ${sizes[i]}`;
 };
 
+
+/**
+    *
+    * @param {number} n number to format
+    *
+    */
+function formatNumberShort(n) {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}k`;
+  return n.toString();
+}
+
 /**
  * Split text over multiple lines based on the card width.
  *
@@ -87,4 +99,4 @@ const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
   return multiLineText;
 };
 
-export { kFormatter, formatBytes, wrapTextMultiline };
+export { kFormatter, formatBytes, formatNumberShort, wrapTextMultiline };

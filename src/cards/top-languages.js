@@ -2,7 +2,7 @@
 
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
-import { formatBytes } from "../common/fmt.js";
+import { formatBytes, formatNumberShort } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { chunkArray, clampValue, lowercaseTrim } from "../common/ops.js";
 import {
@@ -207,7 +207,14 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
  * @returns {string} Display value.
  */
 const getDisplayValue = (size, percentages, format) => {
-  return format === "bytes" ? formatBytes(size) : `${percentages.toFixed(2)}%`;
+  switch (format) {
+      case ("bytes"):
+          return formatBytes(size);
+      case("lines"):
+          return `${formatNumberShort(size / 60)} Lines`;
+      default:
+        return `${percentages.toFixed(2)}%`
+  }
 };
 
 /**
