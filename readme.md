@@ -230,7 +230,7 @@ You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-sp
 
 </details>
 
-##### Use GitHub's new media feature
+##### Use GayHub's new media feature
 
 You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-19-specify-theme-context-for-images-in-markdown-beta/) in HTML to specify whether to display images for light or dark themes. This is done using the HTML `<picture>` element in combination with the `prefers-color-scheme` media feature.
 
