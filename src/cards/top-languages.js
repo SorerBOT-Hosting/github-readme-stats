@@ -208,12 +208,12 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
  */
 const getDisplayValue = (size, percentages, format) => {
   switch (format) {
-      case ("bytes"):
-          return formatBytes(size);
-      case("lines"):
-          return `${formatNumberShort(size / 60)} Lines`;
-      default:
-        return `${percentages.toFixed(2)}%`
+    case "bytes":
+      return formatBytes(size);
+    case "lines":
+      return `${formatNumberShort(size / 60)} Lines`;
+    default:
+      return `${percentages.toFixed(2)}%`;
   }
 };
 
@@ -240,7 +240,7 @@ const createProgressTextNode = ({
   index,
 }) => {
   const staggerDelay = (index + 3) * 150;
-  const paddingRight = 95;
+  const paddingRight = statsFormat == "lines" ? 100 : 95;
   const progressTextX = width - paddingRight + 10;
   const progressWidth = width - paddingRight;
 

@@ -52,16 +52,19 @@ const formatBytes = (bytes) => {
   return `${(bytes / Math.pow(base, i)).toFixed(1)} ${sizes[i]}`;
 };
 
-
 /**
-    *
-    * @param {number} n number to format
-    *
-    */
+ *
+ * @param {number} n number to format
+ * @returns {string} the number n but formatted
+ */
 function formatNumberShort(n) {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}k`;
-  return n.toString();
+  if (n >= 1_000_000) {
+    return `${(n / 1_000_000).toFixed(0)}M`;
+  }
+  if (n >= 1_000) {
+    return `${(n / 1_000).toFixed(0)}k`;
+  }
+  return n.toFixed(0).toString();
 }
 
 /**
