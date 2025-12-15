@@ -7,7 +7,7 @@ import { logger } from "./log.js";
 
 // Count the number of GitHub API tokens available.
 const PATs = Object.keys(process.env).filter((key) =>
-  /PAT_\d*$/.exec(key),
+  /PAT_\w*$/.exec(key),
 ).length;
 const RETRIES = process.env.NODE_ENV === "test" ? 7 : PATs;
 
@@ -38,10 +38,16 @@ const retryer = async (fetcher, variables, retries = 0) => {
 
   try {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
+    let token = process.env[`PAT_${retries + 1}`];
+    const { login: username } = variables || {};
+    if (username && process.env[`PAT_${username}`]) {
+      token = process.env[`PAT_${username}`];
+    }
+
     let response = await fetcher(
       variables,
       // @ts-ignore
-      process.env[`PAT_${retries + 1}`],
+      token,
       // used in tests for faking rate limit
       retries,
     );
