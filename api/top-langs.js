@@ -133,6 +133,10 @@ export default async (req, res) => {
 
     setCacheHeaders(res, cacheSeconds);
 
+    if (Object.hasOwn(topLangs, "Assembly")) {
+      topLangs["Assembly"].size *= 2;
+    }
+
     return res.send(
       renderTopLanguages(topLangs, {
         custom_title,
